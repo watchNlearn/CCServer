@@ -30,3 +30,29 @@ def payoutRequest(request):
 # Works
 #endtime = ref.child('tournaments').child('standard').child('st1').child('endDate').get()
 #print(endtime)
+'''
+import requests
+
+
+
+
+url = 'https://api.sandbox.paypal.com/v1/oauth2/token'
+client_id = 'AY4ZGZvODya3HW-4gSpb4wN5QsyrmHN2ZMxZa5NmHmy7pam7h3XNvsju07p7gDm4gAS4qZjqqs69kz_t'
+secret = 'EKPf-TSFqNWQ-6crkaGY3ptlfMmVCZedOXYz5s5G4MyOW1qqrVHl3bTODNwXVAu9vnVJa6m_EZV50DUN'
+
+header = {
+    'Accept' : 'application/json',
+    'Accept-Language' : 'en_US',
+    'content-type' : 'application/x-www-form-urlencoded'
+}
+
+data = {
+
+    'grant_type': 'client_credentials',
+}
+
+r = requests.post(url, data=data, headers=header, auth=(client_id, secret)).json()
+print(r['access_token'])
+print(r['expires_in'])
+
+'''
