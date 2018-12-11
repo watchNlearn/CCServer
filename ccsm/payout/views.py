@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
@@ -16,8 +18,15 @@ firebase_admin.initialize_app(cred, {
 
 ref = db.reference()
 
+#checking to see if request works/does
+def payoutRequest(request):
+    endTime = ref.child('tournaments').child('standard').child('st1').child('endDate').get()
+    print(endTime)
+    return HttpResponse(endTime)
+
+
 
 # Create your views here.
 # Works
-endtime = ref.child('tournaments').child('standard').child('st1').child('endDate').get()
-print(endtime)
+#endtime = ref.child('tournaments').child('standard').child('st1').child('endDate').get()
+#print(endtime)
