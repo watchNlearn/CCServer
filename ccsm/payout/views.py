@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.http import JsonResponse
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
@@ -20,9 +21,15 @@ ref = db.reference()
 
 #checking to see if request works/does
 def payoutRequest(request):
-    endTime = ref.child('tournaments').child('standard').child('st1').child('endDate').get()
-    print(endTime)
-    return HttpResponse(endTime)
+    #endTime = ref.child('tournaments').child('standard').child('st1').child('endDate').get()
+    #print(endTime)
+    responseData = {
+        'id': 4,
+        'date': "12/11/2018",
+        'ccValue': 5
+    }
+
+    return JsonResponse(responseData)
 
 
 
