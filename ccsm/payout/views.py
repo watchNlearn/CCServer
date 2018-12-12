@@ -20,7 +20,7 @@ firebase_admin.initialize_app(cred, {
 ref = db.reference()
 
 #checking to see if request works/does
-def payoutRequest(request):
+def getRequest(request):
     #endTime = ref.child('tournaments').child('standard').child('st1').child('endDate').get()
     #print(endTime)
     responseData = {
@@ -28,8 +28,12 @@ def payoutRequest(request):
         'date': "12/11/2018",
         'ccValue': 5
     }
-
     return JsonResponse(responseData)
+
+def postRequest(request):
+    if request.method == 'POST':
+        print(request.POST)
+    return HttpResponse("Ok")
 
 
 
