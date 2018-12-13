@@ -5,7 +5,7 @@ from django.http import JsonResponse
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
-
+#from django.views.decorators.csrf import ensure_csrf_cookie
 
 
 # Fetch the service account key JSON file contents
@@ -30,6 +30,8 @@ def getRequest(request):
     }
     return JsonResponse(responseData)
 
+
+#@ensure_csrf_cookie
 def postRequest(request):
     if request.method == 'POST':
         print(request.POST)
