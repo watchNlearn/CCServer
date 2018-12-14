@@ -5,7 +5,8 @@ from django.http import JsonResponse
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
-#from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 
 # Fetch the service account key JSON file contents
@@ -30,11 +31,16 @@ def getRequest(request):
     }
     return JsonResponse(responseData)
 
-
-#@ensure_csrf_cookie
+#Added exempt this isnt safe lol
+@csrf_exempt
 def postRequest(request):
     if request.method == 'POST':
-        print(request.POST)
+        #request.body needs to be decoded? tried to below...
+        print(request.body)
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        content = body['Id']
+        print(content)
     return HttpResponse("Ok")
 
 
