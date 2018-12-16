@@ -39,7 +39,8 @@ def postRequest(request):
         print(request.body)
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
-        content = body['Id']
+        print(body)
+        content = body['uid']
         print(content)
     return HttpResponse("Ok")
 
