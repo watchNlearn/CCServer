@@ -8,7 +8,6 @@ from firebase_admin import db
 from django.views.decorators.csrf import csrf_exempt
 import json
 
-
 # Fetch the service account key JSON file contents
 # Note follow this flow to keep our files interchangeable
 # Ex all you would have to change is  /jackirish/
@@ -35,11 +34,11 @@ def getRequest(request):
 @csrf_exempt
 def postRequest(request):
     if request.method == 'POST':
-        #request.body needs to be decoded? tried to below...
-        print(request.body)
-        body_unicode = request.body.decode('utf-8')
-        body = json.loads(body_unicode)
-        print(body)
+        #print(request.body)
+        #body_unicode = request.body.decode('utf-8')
+        #body = json.loads(body_unicode)
+        body = json.loads(request.body)
+        print(json.dumps(body))
         content = body['uid']
         print(content)
     return HttpResponse("Ok")
