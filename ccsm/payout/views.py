@@ -7,6 +7,7 @@ from firebase_admin import credentials
 from firebase_admin import db
 from django.views.decorators.csrf import csrf_exempt
 import json
+import datetime
 
 # Fetch the service account key JSON file contents
 # Note follow this flow to keep our files interchangeable
@@ -34,14 +35,23 @@ def getRequest(request):
 @csrf_exempt
 def postRequest(request):
     if request.method == 'POST':
-        #print(request.body)
-        #body_unicode = request.body.decode('utf-8')
-        #body = json.loads(body_unicode)
         body = json.loads(request.body)
         print(json.dumps(body))
-        content = body['uid']
-        print(content)
+        username = body['username']
+        uid = body['uid']
+        ccValue = body['ccValue']
+        timestamp = body['date']
+        print(username)
+        print(uid)
+        print(ccValue)
+        print(timestamp)
+        requestDate = datetime.datetime.fromtimestamp(timestamp)
+        exactRequestDate = requestDate.strftime('%m-%d-%Y %H:%M:%S')
+        print(exactRequestDate)
+
     return HttpResponse("Ok")
+
+
 
 
 
