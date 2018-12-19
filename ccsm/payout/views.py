@@ -8,6 +8,8 @@ from firebase_admin import db
 from django.views.decorators.csrf import csrf_exempt
 import json
 import datetime
+import calendar
+import time
 
 # Fetch the service account key JSON file contents
 # Note follow this flow to keep our files interchangeable
@@ -19,6 +21,9 @@ firebase_admin.initialize_app(cred, {
 })
 
 ref = db.reference()
+
+
+
 
 #checking to see if request works/does
 def getRequest(request):
@@ -48,11 +53,55 @@ def postRequest(request):
         requestDate = datetime.datetime.fromtimestamp(timestamp)
         exactRequestDate = requestDate.strftime('%m-%d-%Y %H:%M:%S')
         print(exactRequestDate)
-
+        if verifyRequest(username, uid, ccValue, timestamp):
+            print('Passed all checks')
+        else:
+            print('Failed checks')
     return HttpResponse("Ok")
 
 
 
+def verifyRequest(username, uid, ccValue, timestamp):
+    print('Verify Request')
+    payoutLockStatus = ref.child('payout').child('status').get()
+    if payoutLockStatus == 'unlocked':
+        print('Lock         [Passed]')
+        winCheck = ref.child('users').child(uid).child('tWins').get()
+        if winCheck != 0:
+            print('WinCheck     [Passed]')
+            #Username and Uid Check
+            unCheck = ref.child('users').child(uid).child('username').get()
+            uidConfirm = ref.child('usernames').child(username).get()
+            checkCCvalue = ref.child('clashCoins').child(username).child(uid).child('cc').get()
+            if username == unCheck and uid == uidConfirm and checkCCvalue == ccValue and checkCCvalue >= 1000:
+                print('UN|UID|CC    [Passed]')
+                #Last check for request time
+                clientTS = timestamp
+                serverTS = calendar.timegm(time.gmtime())
+                #5 mins
+                threshHoldS = serverTS - clientTS
+                if threshHoldS <= 300:
+                    print('TimeCheck    [Passed]')
+                    return True
+                    #Request is recent enough
+                else:
+                    print('TimeCheck    [Failed]')
+                    return False
+                    #Old request return error
+            else:
+                print('UN|UID|CC    [Failed]')
+                return False
+                #return error message to client
+
+        elif winCheck == 0:
+            print('WinCheck     [Failed]')
+            #return error message to client
+            return False
+    elif payoutLockStatus == 'locked':
+        print('Lock         [Failed]')
+        return False
+        #return error message to client
+    
 
 
 # Create your views here.
