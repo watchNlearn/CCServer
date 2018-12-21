@@ -46,14 +46,16 @@ def postRequest(request):
         uid = body['uid']
         ccValue = body['ccValue']
         timestamp = body['date']
+        clientKey = body['clientKey']
         print(username)
         print(uid)
         print(ccValue)
         print(timestamp)
+        print(clientKey)
         requestDate = datetime.datetime.fromtimestamp(timestamp)
         exactRequestDate = requestDate.strftime('%m-%d-%Y %H:%M:%S')
         print(exactRequestDate)
-        if verifyRequest(username, uid, ccValue, timestamp):
+        if verifyRequest(username, uid, ccValue, timestamp, clientKey):
             print('Passed all checks')
         else:
             print('Failed checks')
@@ -61,7 +63,7 @@ def postRequest(request):
 
 
 
-def verifyRequest(username, uid, ccValue, timestamp):
+def verifyRequest(username, uid, ccValue, timestamp, clientKey):
     print('Verify Request')
     payoutLockStatus = ref.child('payout').child('status').get()
     if payoutLockStatus == 'unlocked':
@@ -82,8 +84,13 @@ def verifyRequest(username, uid, ccValue, timestamp):
                 threshHoldS = serverTS - clientTS
                 if threshHoldS <= 300:
                     print('TimeCheck    [Passed]')
-                    return True
+                    if clientKey == "yea_im_feeling_like_ray_charles":
+                        print('ClientCheck  [Passed]')
+                        return True
                     #Request is recent enough
+                    else:
+                        print('ClientCheck  [Failed]')
+                        return False
                 else:
                     print('TimeCheck    [Failed]')
                     return False
@@ -101,7 +108,7 @@ def verifyRequest(username, uid, ccValue, timestamp):
         print('Lock         [Failed]')
         return False
         #return error message to client
-    
+
 
 
 # Create your views here.
