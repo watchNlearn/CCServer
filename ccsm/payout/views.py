@@ -57,9 +57,14 @@ def postRequest(request):
         print(exactRequestDate)
         if verifyRequest(username, uid, ccValue, timestamp, clientKey):
             print('Passed all checks')
+            payoutConfirmed()
+            return JsonResponse ({'status': 'passed', 'message': 'hello'})
         else:
             print('Failed checks')
     return HttpResponse("Ok")
+
+def payoutConfirmed():
+    print("payout now")
 
 
 
