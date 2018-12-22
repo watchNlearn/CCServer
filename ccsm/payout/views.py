@@ -61,11 +61,12 @@ def postRequest(request):
             return JsonResponse ({'status': 'passed', 'message': 'hello'})
         else:
             print('Failed checks')
+            return JsonResponse ({'status': 'failed', 'message': 'goodbye'})
     return HttpResponse("Ok")
 
 def payoutConfirmed():
     print("payout now")
-
+    #Do paypal api
 
 
 def verifyRequest(username, uid, ccValue, timestamp, clientKey):
