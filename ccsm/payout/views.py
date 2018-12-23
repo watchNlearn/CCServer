@@ -1,16 +1,16 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.http import JsonResponse
+import calendar
+import datetime
+import json
+import time
 import firebase_admin
+import paypalrestsdk
+import requests
+from django.http import HttpResponse
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from firebase_admin import credentials
 from firebase_admin import db
-from django.views.decorators.csrf import csrf_exempt
-import json
-import datetime
-import calendar
-import time
-
+from paypalrestsdk import Payout
 # Fetch the service account key JSON file contents
 # Note follow this flow to keep our files interchangeable
 # Ex all you would have to change is  /jackirish/
@@ -21,6 +21,68 @@ firebase_admin.initialize_app(cred, {
 })
 
 ref = db.reference()
+
+
+
+
+
+def getAccessToken():
+    url = 'https://api.sandbox.paypal.com/v1/oauth2/token'
+    client_id = 'ASsYedLneAfnAb1gDKswsaZh4ia46AN1MIjlbj_JYfuGJco8J3O4S6vzXlqFEoYRBVqVUV0XwQjyIW7n'
+    secret = 'EGma-gmh-mW2Ra6ohybDK_YXgNKfIM7aYxcSM_9fdfqDiuwXEdvTO5ShePwGVgpwNdR-cHPvciJNc_op'
+    header = {
+        'Accept': 'application/json',
+        'Accept-Language': 'en_US',
+        'content-type': 'application/x-www-form-urlencoded'
+    }
+    data = {
+        'grant_type': 'client_credentials',
+    }
+    r = requests.post(url, data=data, headers=header, auth=(client_id, secret)).json()
+    print(r['access_token'])
+    print(r['expires_in'])
+    return r['access_token']
+
+
+def paypalconfigure():
+    paypalrestsdk.configure({
+        "mode": "sandbox",
+        "client_id": "ASsYedLneAfnAb1gDKswsaZh4ia46AN1MIjlbj_JYfuGJco8J3O4S6vzXlqFEoYRBVqVUV0XwQjyIW7n",
+        "client_secret": "EGma-gmh-mW2Ra6ohybDK_YXgNKfIM7aYxcSM_9fdfqDiuwXEdvTO5ShePwGVgpwNdR-cHPvciJNc_op"
+    })
+    '''
+    url = 'https://api.paypal.com/v1/payments/payouts?sync_mode=false'
+    header = {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + getAccessToken(),
+        'Content-Type': 'application/json'
+    }
+    '''
+    payout = Payout({
+        "sender_batch_header": {
+            "sender_batch_id": "batch6",
+            "email_subject": "You have a payment"
+        },
+        "items": [
+            {
+                "recipient_type": "EMAIL",
+                "amount": {
+                    "value": 6.00,
+                    "currency": "USD"
+                },
+                "receiver": "shirt-supplier-one@mail.com",
+                "note": "Thank you.",
+                "sender_item_id": "item_1"
+            }
+        ]
+    })
+    if payout.create(sync_mode=False):
+        print("payout[%s] created successfully" %
+              (payout.batch_header.payout_batch_id))
+        return True
+    else:
+        print(payout.error)
+
 
 
 
@@ -58,6 +120,7 @@ def postRequest(request):
         if verifyRequest(username, uid, ccValue, timestamp, clientKey):
             print('Passed all checks')
             payoutConfirmed()
+
             return JsonResponse ({'status': 'passed', 'message': 'hello'})
         else:
             print('Failed checks')
