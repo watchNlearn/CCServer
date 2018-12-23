@@ -44,7 +44,7 @@ def getAccessToken():
     return r['access_token']
 
 
-def paypalconfigure():
+def paypalConfirmed(username, email, uid, exactRequestDate):
     paypalrestsdk.configure({
         "mode": "sandbox",
         "client_id": "ASsYedLneAfnAb1gDKswsaZh4ia46AN1MIjlbj_JYfuGJco8J3O4S6vzXlqFEoYRBVqVUV0XwQjyIW7n",
@@ -61,7 +61,9 @@ def paypalconfigure():
     payout = Payout({
         "sender_batch_header": {
             "sender_batch_id": "batch6",
-            "email_subject": "You have a payment"
+            "email_subject": "Click Clash: You have a payment!",
+            "email_message": "This is a cashout prize for: " + username + ". Your User ID is: " + uid +
+                             ". This was sent on " + exactRequestDate + "."
         },
         "items": [
             {
@@ -70,9 +72,9 @@ def paypalconfigure():
                     "value": 6.00,
                     "currency": "USD"
                 },
-                "receiver": "shirt-supplier-one@mail.com",
-                "note": "Thank you.",
-                "sender_item_id": "item_1"
+                "receiver": email,
+                "note": "Thank you and enjoy your prize! Email clickerclash.business@gmail.com for disputes.",
+                "sender_item_id": "Standard Cashout"
             }
         ]
     })
@@ -105,11 +107,13 @@ def postRequest(request):
         body = json.loads(request.body)
         print(json.dumps(body))
         username = body['username']
+        email = body['email']
         uid = body['uid']
         ccValue = body['ccValue']
         timestamp = body['date']
         clientKey = body['clientKey']
         print(username)
+        print(email)
         print(uid)
         print(ccValue)
         print(timestamp)
@@ -119,7 +123,8 @@ def postRequest(request):
         print(exactRequestDate)
         if verifyRequest(username, uid, ccValue, timestamp, clientKey):
             print('Passed all checks')
-            payoutConfirmed()
+            adjustccValues(username, uid, ccValue)
+            paypalConfirmed(username, email, uid, exactRequestDate)
 
             return JsonResponse ({'status': 'passed', 'message': 'hello'})
         else:
@@ -127,9 +132,11 @@ def postRequest(request):
             return JsonResponse ({'status': 'failed', 'message': 'goodbye'})
     return HttpResponse("Ok")
 
-def payoutConfirmed():
-    print("payout now")
-    #Do paypal api
+
+def adjustccValues(username, uid, ccValue):
+    #Subtracting 1000 CC from user
+    adjustedValue = ccValue - 1000
+    ref.child('clashCoins').child(username).child(uid).child('cc').set(adjustedValue)
 
 
 def verifyRequest(username, uid, ccValue, timestamp, clientKey):
