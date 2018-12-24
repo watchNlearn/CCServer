@@ -1,0 +1,30 @@
+Payout History Log
+--------------------------------------------
+Username: test6
+UID: BcgRqsfGjLOjntiG0U8ZoiP5YZP2
+Email: test6@gmail.com
+Date: 12-23-2018 21:46:05
+Batch ID: 50LGT4BF
+Other: YCNXT9EMG638C
+--------------------------------------------
+Username: test6
+UID: BcgRqsfGjLOjntiG0U8ZoiP5YZP2
+Email: test6@gmail.com
+Date: 12-23-2018 21:46:32
+Batch ID: XWOE8ZUZ
+Other: C4L2EU7TSATK4
+--------------------------------------------
+Username: test6
+UID: BcgRqsfGjLOjntiG0U8ZoiP5YZP2
+Email: test6@gmail.com
+Date: 12-23-2018 21:47:20
+Batch ID: G7QS4Y7F
+Other: CWTS5268XEMRC
+--------------------------------------------
+Username: test6
+UID: BcgRqsfGjLOjntiG0U8ZoiP5YZP2
+Email: test6@gmail.com
+Date: 12-23-2018 21:51:29
+Batch ID: XVAY1TEU
+Other: 93DQ5Q9NPYNVG
+--------------------------------------------

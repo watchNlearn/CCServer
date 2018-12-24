@@ -5,6 +5,8 @@ import time
 import firebase_admin
 import paypalrestsdk
 import requests
+import random
+import string
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -58,9 +60,10 @@ def paypalConfirmed(username, email, uid, exactRequestDate):
         'Content-Type': 'application/json'
     }
     '''
+    sender_batch_id = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(8))
     payout = Payout({
         "sender_batch_header": {
-            "sender_batch_id": "batch6",
+            "sender_batch_id": sender_batch_id,
             "email_subject": "Click Clash: You have a payment!",
             "email_message": "This is a cashout prize for: " + username + ". Your User ID is: " + uid +
                              ". This was sent on " + exactRequestDate + "."
@@ -69,7 +72,7 @@ def paypalConfirmed(username, email, uid, exactRequestDate):
             {
                 "recipient_type": "EMAIL",
                 "amount": {
-                    "value": 6.00,
+                    "value": 5.00,
                     "currency": "USD"
                 },
                 "receiver": email,
@@ -81,9 +84,19 @@ def paypalConfirmed(username, email, uid, exactRequestDate):
     if payout.create(sync_mode=False):
         print("payout[%s] created successfully" %
               (payout.batch_header.payout_batch_id))
+        paymentHistory = open("payouthistory.txt", "a")
+        paymentHistory.write("Username: " + username + "\n")
+        paymentHistory.write("UID: " + uid + "\n")
+        paymentHistory.write("Email: " + email + "\n")
+        paymentHistory.write("Date: " + exactRequestDate + "\n")
+        paymentHistory.write("Batch ID: " + sender_batch_id + "\n")
+        paymentHistory.write("Other: " + payout.batch_header.payout_batch_id + "\n")
+        paymentHistory.write("--------------------------------------------" + "\n")
+        paymentHistory.close()
         return True
     else:
         print(payout.error)
+        return False
 
 
 
@@ -104,6 +117,9 @@ def getRequest(request):
 @csrf_exempt
 def postRequest(request):
     if request.method == 'POST':
+        #createfile = open("payouthistory.txt", "w")
+        #createfile.write("Payout History Log")
+        #createfile.close()
         body = json.loads(request.body)
         print(json.dumps(body))
         username = body['username']
@@ -124,12 +140,13 @@ def postRequest(request):
         if verifyRequest(username, uid, ccValue, timestamp, clientKey):
             print('Passed all checks')
             adjustccValues(username, uid, ccValue)
-            paypalConfirmed(username, email, uid, exactRequestDate)
-
-            return JsonResponse ({'status': 'passed', 'message': 'hello'})
+            if paypalConfirmed(username, email, uid, exactRequestDate):
+                return JsonResponse({'status': 'passed', 'message': 'hello'})
+            else:
+                return JsonResponse({'status': 'failedPayout', 'message': 'goodbye'})
         else:
             print('Failed checks')
-            return JsonResponse ({'status': 'failed', 'message': 'goodbye'})
+            return JsonResponse({'status': 'failedChecks', 'message': 'goodbye'})
     return HttpResponse("Ok")
 
 
@@ -137,6 +154,7 @@ def adjustccValues(username, uid, ccValue):
     #Subtracting 1000 CC from user
     adjustedValue = ccValue - 1000
     ref.child('clashCoins').child(username).child(uid).child('cc').set(adjustedValue)
+
 
 
 def verifyRequest(username, uid, ccValue, timestamp, clientKey):
