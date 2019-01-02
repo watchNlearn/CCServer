@@ -7,6 +7,8 @@ import paypalrestsdk
 import requests
 import random
 import string
+import smtplib
+from email.mime.text import MIMEText
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -98,6 +100,10 @@ def paypalConfirmed(username, email, uid, exactRequestDate):
         print(payout.error)
         return False
 
+def emailBot(username, email, uid, exactRequestDate):
+    sender = 'clickerclash.business@gmail.com'
+    receiver = email
+    content = ''
 
 
 
