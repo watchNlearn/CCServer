@@ -99,11 +99,25 @@ def paypalConfirmed(username, email, uid, exactRequestDate):
     else:
         print(payout.error)
         return False
+def findSMTP(usersProvider):
+    #find and match list of user providers
+    print(usersProvider)
 
 def emailBot(username, email, uid, exactRequestDate):
     sender = 'clickerclash.business@gmail.com'
     receiver = email
-    content = ''
+    content = """The receiver will see this message.
+                Best regards"""
+    msg = MIMEText(content)
+    msg['From'] = sender
+    msg['To'] = receiver
+    msg['Subject'] = 'Clicker Clash Cashout'
+    usersProvider = receiver[receiver.find('@')+1:]
+    if findSMTP(usersProvider):
+        print('provider found')
+    else:
+        print('provider not found')
+
 
 
 
