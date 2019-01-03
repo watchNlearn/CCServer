@@ -101,6 +101,11 @@ def paypalConfirmed(username, email, uid, exactRequestDate):
         return False
 def findSMTP(usersProvider):
     #find and match list of user providers
+    usersProviderl = usersProvider.lower()
+    existingProviders = {'1and1.com': 'smtp.1and1.com', 'airmail.net': 'mail.airmail.net'}
+
+
+
     print(usersProvider)
 
 def emailBot(username, email, uid, exactRequestDate):
