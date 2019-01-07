@@ -131,7 +131,7 @@ def emailBot(username, email, uid, exactRequestDate):
         print('provider not found')
     #check for provider
     #check port
-    
+    #finish login send and quit
 
 
 
