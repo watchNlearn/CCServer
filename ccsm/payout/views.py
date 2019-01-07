@@ -102,11 +102,18 @@ def paypalConfirmed(username, email, uid, exactRequestDate):
 def findSMTP(usersProvider):
     #find and match list of user providers
     usersProviderl = usersProvider.lower()
-    existingProviders = {'1and1.com': 'smtp.1and1.com', 'airmail.net': 'mail.airmail.net'}
+    existingProviders = {'1and1.com': 'smtp.1and1.com', 'airmail.net': 'mail.airmail.net', 'aol.com': 'smtp.aol.com',
+                         'att.net': 'outbound.att.net', 'bluewin.ch': 'smtpauths.bluewin.ch', 'btconnect.com':
+                         'mail.btconnect.tom', 'comcast.net': 'smtp.comcast.net', 'earthlink.net':
+                         'smtpauth.earthlink.net', 'gmail.com': 'smtp.gmail.com', 'gmx.net': 'mail.gmx.net',
+                         'hotpop.com': 'mail.hotpop.com', 'libero.it': 'mail.libero.it', 'lycos.com': 'smtp.lycos.com',
+                         'o2.com': 'smtp.o2.com', 'orange.net': 'smtp.orange.net', 'outlook.com': 'smtp.live.com',
+                         'tin.it': 'mail.tin.it', 'tiscali.co.uk': 'smtp.tiscali.co.uk', 'verizon.net':
+                         'outgoing.verizon.net', 'virgin.net': 'smtp.virgin.net', 'wanadoo.fr': 'smtp.wanadoo.fr',
+                         'yahoo.com': 'smtp.mail.yahoo.com'}
+    print("test")
+    return existingProviders.get(usersProviderl)
 
-
-
-    print(usersProvider)
 
 def emailBot(username, email, uid, exactRequestDate):
     sender = 'clickerclash.business@gmail.com'
