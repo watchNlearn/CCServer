@@ -130,6 +130,8 @@ def emailBot(username, email, uid, exactRequestDate):
     else:
         print('provider not found')
     #check for provider
+    #check port
+    
 
 
 
