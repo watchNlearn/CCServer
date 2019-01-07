@@ -111,7 +111,7 @@ def findSMTP(usersProvider):
                          'tin.it': 'mail.tin.it', 'tiscali.co.uk': 'smtp.tiscali.co.uk', 'verizon.net':
                          'outgoing.verizon.net', 'virgin.net': 'smtp.virgin.net', 'wanadoo.fr': 'smtp.wanadoo.fr',
                          'yahoo.com': 'smtp.mail.yahoo.com'}
-    
+
     return existingProviders.get(usersProviderl)
 
 
@@ -129,6 +129,7 @@ def emailBot(username, email, uid, exactRequestDate):
         print('provider found')
     else:
         print('provider not found')
+    #check for provider
 
 
 
