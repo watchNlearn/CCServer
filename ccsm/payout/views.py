@@ -111,7 +111,7 @@ def findSMTP(usersProvider):
                          'tin.it': 'mail.tin.it', 'tiscali.co.uk': 'smtp.tiscali.co.uk', 'verizon.net':
                          'outgoing.verizon.net', 'virgin.net': 'smtp.virgin.net', 'wanadoo.fr': 'smtp.wanadoo.fr',
                          'yahoo.com': 'smtp.mail.yahoo.com'}
-    print("test")
+    
     return existingProviders.get(usersProviderl)
 
 
