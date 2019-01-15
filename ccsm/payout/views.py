@@ -146,9 +146,12 @@ def emailBot(username, email, uid, exactRequestDate):
         else:
             server = smtplib.SMTP('{}:{}'.format(smtp_server_name, port))
             server.starttls()
+        payOutId = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for i in range(10))
+
+        currentCode = getCode()
         content = """The receiver will see this message.
                         Best regards"""
-        # need to add code system maybe use outfiles?
+
         msg = MIMEText(content)
         msg['From'] = sender
         msg['To'] = receiver
@@ -157,6 +160,16 @@ def emailBot(username, email, uid, exactRequestDate):
         server.send_message(msg)
         server.quit()
         print('finished')
+
+        paymentHistory = open("payouthistory.txt", "a")
+        paymentHistory.write("Username: " + username + "\n")
+        paymentHistory.write("UID: " + uid + "\n")
+        paymentHistory.write("Email: " + email + "\n")
+        paymentHistory.write("Date: " + exactRequestDate + "\n")
+        paymentHistory.write("Code ID: " + currentCode + "\n")
+        paymentHistory.write("Payout ID: " + payOutId + "\n")
+        paymentHistory.write("--------------------------------------------" + "\n")
+        paymentHistory.close()
         return True
     else:
         print('Error')
