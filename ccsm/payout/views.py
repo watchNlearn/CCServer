@@ -114,7 +114,7 @@ def findSMTP(usersProvider):
 
     return existingProviders.get(usersProviderl)
 
-def getCode():
+def getCode(exactRequestDate):
     payoutcode = open('payoutcodes.txt')
     payoutcodedata = payoutcode.readlines()
     currentcode = payoutcodedata[2]
@@ -128,7 +128,7 @@ def getCode():
     payoutcoderewrite.close()
 
     payoutcodelog = open('oldpayoutcodes.txt', 'a')
-    payoutcodelog.write(currentcode + "\n")
+    payoutcodelog.write(currentcode + "Date: " + exactRequestDate + "\n")
     payoutcodelog.close()
     print('now old code')
     #works
@@ -148,7 +148,7 @@ def emailBot(username, email, uid, exactRequestDate):
             server.starttls()
         payOutId = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for i in range(10))
 
-        currentCode = getCode()
+        currentCode = getCode(exactRequestDate)
         content = """The receiver will see this message.
                         Best regards"""
 
