@@ -114,6 +114,25 @@ def findSMTP(usersProvider):
 
     return existingProviders.get(usersProviderl)
 
+def getCode():
+    payoutcode = open('payoutcodes.txt')
+    payoutcodedata = payoutcode.readlines()
+    currentcode = payoutcodedata[2]
+    print(currentcode)
+    payoutcode.close()
+    payoutcodedata.pop(2)
+
+    payoutcoderewrite = open('payoutcodes.txt', 'w')
+    newPayoutData = "".join(payoutcodedata)
+    payoutcoderewrite.write(newPayoutData)
+    payoutcoderewrite.close()
+
+    payoutcodelog = open('oldpayoutcodes.txt', 'a')
+    payoutcodelog.write(currentcode + "\n")
+    payoutcodelog.close()
+    print('now old code')
+    #works
+    return currentcode
 
 def emailBot(username, email, uid, exactRequestDate):
     sender = 'clickerclash.business@gmail.com'
