@@ -120,6 +120,7 @@ def emailBot(username, email, uid, exactRequestDate):
     receiver = email
     content = """The receiver will see this message.
                 Best regards"""
+    #need to add code system maybe use outfiles?
     msg = MIMEText(content)
     msg['From'] = sender
     msg['To'] = receiver
