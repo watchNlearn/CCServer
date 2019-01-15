@@ -126,9 +126,20 @@ def emailBot(username, email, uid, exactRequestDate):
     msg['Subject'] = 'Clicker Clash Cashout'
     usersProvider = receiver[receiver.find('@')+1:]
     if findSMTP(usersProvider):
-        print('provider found')
+        smtp_server_name = findSMTP(usersProvider)
+        port = '465'
+        if port == '465':
+            server = smtplib.SMTP_SSL('{}:{}'.format(smtp_server_name, port))
+        else:
+            server = smtplib.SMTP('{}:{}'.format(smtp_server_name, port))
+            server.starttls()
+        server.login(sender, password='2800honeycubcc')
+        server.send_message(msg)
+        server.quit()
+        print('finished')
     else:
-        print('provider not found')
+        print('Error')
+
     #check for provider
     #check port
     #finish login send and quit
