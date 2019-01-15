@@ -118,13 +118,6 @@ def findSMTP(usersProvider):
 def emailBot(username, email, uid, exactRequestDate):
     sender = 'clickerclash.business@gmail.com'
     receiver = email
-    content = """The receiver will see this message.
-                Best regards"""
-    #need to add code system maybe use outfiles?
-    msg = MIMEText(content)
-    msg['From'] = sender
-    msg['To'] = receiver
-    msg['Subject'] = 'Clicker Clash Cashout'
     usersProvider = receiver[receiver.find('@')+1:]
     if findSMTP(usersProvider):
         smtp_server_name = findSMTP(usersProvider)
@@ -134,12 +127,21 @@ def emailBot(username, email, uid, exactRequestDate):
         else:
             server = smtplib.SMTP('{}:{}'.format(smtp_server_name, port))
             server.starttls()
+        content = """The receiver will see this message.
+                        Best regards"""
+        # need to add code system maybe use outfiles?
+        msg = MIMEText(content)
+        msg['From'] = sender
+        msg['To'] = receiver
+        msg['Subject'] = 'Clicker Clash Cashout'
         server.login(sender, password='2800honeycubcc')
         server.send_message(msg)
         server.quit()
         print('finished')
+        return True
     else:
         print('Error')
+        return False
 
     #check for provider
     #check port

@@ -27,55 +27,65 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="json" value="1" />
+          <entry key="payoutcodes" value="1" />
           <entry key="py" value="12" />
+          <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JSON" value="1" />
+          <entry key="PLAIN_TEXT" value="2" />
           <entry key="Python" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="8858" />
+          <entry key="payoutcodes" value="74" />
+          <entry key="py" value="8883" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="8858" />
+          <entry key="PLAIN_TEXT" value="74" />
+          <entry key="Python" value="8883" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ccsm/settings.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/payout/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
+            <state relative-caret-position="579">
+              <caret line="143" column="24" selection-start-line="143" selection-start-column="24" selection-end-line="143" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+                <marker date="1547534343424" expanded="true" signature="880:883" ph="..." />
+                <marker date="1547534343424" expanded="true" signature="880:6015" ph="..." />
+                <marker date="1547534343424" expanded="true" signature="904:1551" ph="..." />
+                <marker date="1547534343424" expanded="true" signature="3812:6015" ph="..." />
+                <marker date="1547534343424" expanded="true" signature="4930:4932" ph="..." />
+                <marker date="1547534343424" expanded="true" signature="4985:6015" ph="..." />
+                <marker date="1547534343424" expanded="true" signature="7711:7915" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/payout/views.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/payoutcodes">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="122" column="48" selection-start-line="122" selection-start-column="48" selection-end-line="122" selection-end-column="48" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-                <marker date="1547513706586" expanded="true" signature="880:883" ph="..." />
-                <marker date="1547513706586" expanded="true" signature="880:5937" ph="..." />
-                <marker date="1547513706586" expanded="true" signature="904:1551" ph="..." />
-                <marker date="1547513706586" expanded="true" signature="3812:5937" ph="..." />
-                <marker date="1547513706586" expanded="true" signature="4930:4932" ph="..." />
-                <marker date="1547513706586" expanded="true" signature="4985:5937" ph="..." />
-                <marker date="1547513706586" expanded="true" signature="7633:7837" ph="..." />
-              </folding>
+            <state relative-caret-position="45">
+              <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/payouthistory.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -154,13 +164,14 @@
         <option value="$PROJECT_DIR$/ccsm/urls.py" />
         <option value="$PROJECT_DIR$/payout/urls.py" />
         <option value="$PROJECT_DIR$/ccsm/settings.py" />
+        <option value="$PROJECT_DIR$/payoutcodes" />
         <option value="$PROJECT_DIR$/payout/views.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-60" />
-    <option name="y" value="122" />
+    <option name="x" value="50" />
+    <option name="y" value="120" />
     <option name="width" value="1514" />
     <option name="height" value="1028" />
   </component>
@@ -256,7 +267,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-60" y="122" width="1514" height="1028" extended-state="0" />
+    <frame x="50" y="120" width="1514" height="1028" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2203617" />
@@ -345,19 +356,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/payouthistory.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payoutcodes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/payout/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="122" column="48" selection-start-line="122" selection-start-column="48" selection-end-line="122" selection-end-column="48" />
+        <state relative-caret-position="579">
+          <caret line="143" column="24" selection-start-line="143" selection-start-column="24" selection-end-line="143" selection-end-column="24" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
-            <marker date="1547513706586" expanded="true" signature="880:883" ph="..." />
-            <marker date="1547513706586" expanded="true" signature="880:5937" ph="..." />
-            <marker date="1547513706586" expanded="true" signature="904:1551" ph="..." />
-            <marker date="1547513706586" expanded="true" signature="3812:5937" ph="..." />
-            <marker date="1547513706586" expanded="true" signature="4930:4932" ph="..." />
-            <marker date="1547513706586" expanded="true" signature="4985:5937" ph="..." />
-            <marker date="1547513706586" expanded="true" signature="7633:7837" ph="..." />
+            <marker date="1547534343424" expanded="true" signature="880:883" ph="..." />
+            <marker date="1547534343424" expanded="true" signature="880:6015" ph="..." />
+            <marker date="1547534343424" expanded="true" signature="904:1551" ph="..." />
+            <marker date="1547534343424" expanded="true" signature="3812:6015" ph="..." />
+            <marker date="1547534343424" expanded="true" signature="4930:4932" ph="..." />
+            <marker date="1547534343424" expanded="true" signature="4985:6015" ph="..." />
+            <marker date="1547534343424" expanded="true" signature="7711:7915" ph="..." />
           </folding>
         </state>
       </provider>
