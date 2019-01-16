@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="164e25dc-6971-4f97-8b79-8af346d86efa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/payout/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/payout/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="164e25dc-6971-4f97-8b79-8af346d86efa" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,8 +56,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/payout/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="156" column="8" lean-forward="true" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="8" />
+            <state relative-caret-position="500">
+              <caret line="163" column="93" lean-forward="true" selection-start-line="163" selection-start-column="93" selection-end-line="163" selection-end-column="93" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
                 <marker date="1547596002101" expanded="true" signature="880:883" ph="..." />
@@ -362,15 +360,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/payouthistory.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/payoutcodes.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payouthistory.txt">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/oldpayoutcodes.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -381,8 +379,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/payout/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="156" column="8" lean-forward="true" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="8" />
+        <state relative-caret-position="500">
+          <caret line="163" column="93" lean-forward="true" selection-start-line="163" selection-start-column="93" selection-end-line="163" selection-end-column="93" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
             <marker date="1547596002101" expanded="true" signature="880:883" ph="..." />
