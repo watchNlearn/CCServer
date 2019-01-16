@@ -118,7 +118,7 @@ def getCode(exactRequestDate):
     payoutcode = open('payoutcodes.txt')
     payoutcodedata = payoutcode.readlines()
     currentcode = payoutcodedata[2]
-    print(currentcode)
+    #print(currentcode)
     payoutcode.close()
     payoutcodedata.pop(2)
 
@@ -129,12 +129,13 @@ def getCode(exactRequestDate):
 
     payoutcodelog = open('oldpayoutcodes.txt', 'a')
     payoutcodelog.write(currentcode + "Date: " + exactRequestDate + "\n")
+    payoutcodelog.write("--------------------------------------------" + "\n")
     payoutcodelog.close()
-    print('now old code')
-    #works
+    print('Fetched Code')
     return currentcode
 
 def emailBot(username, email, uid, exactRequestDate):
+    print('Starting Email')
     sender = 'clickerclash.business@gmail.com'
     receiver = email
     usersProvider = receiver[receiver.find('@')+1:]
@@ -170,20 +171,20 @@ Best regards,
         msg['To'] = receiver
         msg['Subject'] = 'Clicker Clash Cashout'
         server.login(sender, password='2800honeycubcc')
+        print('Logging Transaction...')
         paymentHistory = open("payouthistory.txt", "a")
         paymentHistory.write("Username: " + username + "\n")
         paymentHistory.write("UID: " + uid + "\n")
         paymentHistory.write("Email: " + email + "\n")
         paymentHistory.write("Date: " + exactRequestDate + "\n")
-        paymentHistory.write("Code ID: " + currentCode + "\n")
+        paymentHistory.write("Code ID: " + currentCode)
         paymentHistory.write("Payout ID: " + payOutId + "\n")
         paymentHistory.write("--------------------------------------------" + "\n")
         paymentHistory.close()
+        print('Done')
         server.send_message(msg)
         server.quit()
-        print('finished')
-
-
+        print('Email Sent')
         return True
     else:
         print('Error')
@@ -235,10 +236,19 @@ def postRequest(request):
         if verifyRequest(username, uid, ccValue, timestamp, clientKey):
             print('Passed all checks')
             adjustccValues(username, uid, ccValue)
-            if paypalConfirmed(username, email, uid, exactRequestDate):
-                return JsonResponse({'status': 'passed', 'message': 'hello'})
+            print('Adjusted User CC Value')
+            if emailBot(username, email, uid, exactRequestDate):
+                print('Success! Returning Response To Client')
+                return JsonResponse({'status': 'passed', 'message': 'Payout Complete'})
             else:
-                return JsonResponse({'status': 'failedPayout', 'message': 'goodbye'})
+                print('Failure! Returning Response To Client')
+                return JsonResponse({'status': 'failedPayout', 'message': 'Payout Incomplete'})
+
+
+            #if paypalConfirmed(username, email, uid, exactRequestDate):
+                #return JsonResponse({'status': 'passed', 'message': 'hello'})
+            #else:
+                #return JsonResponse({'status': 'failedPayout', 'message': 'goodbye'})
         else:
             print('Failed checks')
             return JsonResponse({'status': 'failedChecks', 'message': 'goodbye'})
