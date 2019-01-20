@@ -1,1 +1,1 @@
-web: gunicorn ccsm.wsgi --log-file -
+web: gunicorn ccsm.wsgi:application --log-file -
