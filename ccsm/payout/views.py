@@ -211,7 +211,7 @@ Best regards,
         msg['From'] = sender
         msg['To'] = receiver
         msg['Subject'] = 'Clicker Clash Cashout'
-        server.login(sender, password='2800honeycubcc')
+        server.login(sender, password='clobwdtipjbgguob')
         print('Logging Transaction...')
         ref.child('server').child('payoutHistory').child(uid).child('email').set(email)
         ref.child('server').child('payoutHistory').child(uid).child('payoutID').set(payOutId)
