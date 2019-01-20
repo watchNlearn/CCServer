@@ -25,7 +25,7 @@ SECRET_KEY = 'emq#^h0h5z6m1t7kuau3k@i^*4cahi!ajn@9)mo&mbbyr))v)e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['clickerclash.herokuapp.com']
 
 
 # Application definition
