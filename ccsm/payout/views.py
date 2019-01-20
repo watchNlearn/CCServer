@@ -127,24 +127,53 @@ def findSMTP(usersProvider):
     return existingProviders.get(usersProviderl)
 
 def getCode(exactRequestDate):
-    payoutcode = open('payoutcodes.txt')
-    payoutcodedata = payoutcode.readlines()
-    currentcode = payoutcodedata[2]
+    #payoutcode = open('payoutcodes.txt')
+    #payoutcodedata = payoutcode.readlines()
+    #currentcode = payoutcodedata[2]
     #print(currentcode)
-    payoutcode.close()
-    payoutcodedata.pop(2)
+    #payoutcode.close()
+    #payoutcodedata.pop(2)
 
-    payoutcoderewrite = open('payoutcodes.txt', 'w')
-    newPayoutData = "".join(payoutcodedata)
-    payoutcoderewrite.write(newPayoutData)
-    payoutcoderewrite.close()
+    #payoutcoderewrite = open('payoutcodes.txt', 'w')
+    #newPayoutData = "".join(payoutcodedata)
+    #payoutcoderewrite.write(newPayoutData)
+    #payoutcoderewrite.close()
 
-    payoutcodelog = open('oldpayoutcodes.txt', 'a')
-    payoutcodelog.write(currentcode + "Date: " + exactRequestDate + "\n")
-    payoutcodelog.write("--------------------------------------------" + "\n")
-    payoutcodelog.close()
-    print('Fetched Code')
-    return currentcode
+    #payoutcodelog = open('oldpayoutcodes.txt', 'a')
+    #payoutcodelog.write(currentcode + "Date: " + exactRequestDate + "\n")
+    #payoutcodelog.write("--------------------------------------------" + "\n")
+    #payoutcodelog.close()
+    code1 = ref.child('server').child('codes').child('code1').get()
+    if code1 != "":
+        ref.child('server').child('expiredcodes').child(code1).set(exactRequestDate)
+        ref.child('server').child('codes').child('code1').set("")
+        currentCode = code1
+        return currentCode
+    code2 = ref.child('server').child('codes').child('code2').get()
+    if code2 != "":
+        ref.child('server').child('expiredcodes').child(code2).set(exactRequestDate)
+        ref.child('server').child('codes').child('code2').set("")
+        currentCode = code2
+        return currentCode
+    code3 = ref.child('server').child('codes').child('code3').get()
+    if code3 != "":
+        ref.child('server').child('expiredcodes').child(code3).set(exactRequestDate)
+        ref.child('server').child('codes').child('code3').set("")
+        currentCode = code3
+        return currentCode
+    code4 = ref.child('server').child('codes').child('code4').get()
+    if code4 != "":
+        ref.child('server').child('expiredcodes').child(code4).set(exactRequestDate)
+        ref.child('server').child('codes').child('code4').set("")
+        currentCode = code4
+        return currentCode
+    code5 = ref.child('server').child('codes').child('code5').get()
+    if code5 != "":
+        ref.child('server').child('expiredcodes').child(code5).set(exactRequestDate)
+        ref.child('server').child('codes').child('code5').set("")
+        currentCode = code5
+        return currentCode
+
 
 def emailBot(username, email, uid, exactRequestDate):
     print('Starting Email')
@@ -184,15 +213,20 @@ Best regards,
         msg['Subject'] = 'Clicker Clash Cashout'
         server.login(sender, password='2800honeycubcc')
         print('Logging Transaction...')
-        paymentHistory = open("payouthistory.txt", "a")
-        paymentHistory.write("Username: " + username + "\n")
-        paymentHistory.write("UID: " + uid + "\n")
-        paymentHistory.write("Email: " + email + "\n")
-        paymentHistory.write("Date: " + exactRequestDate + "\n")
-        paymentHistory.write("Code ID: " + currentCode)
-        paymentHistory.write("Payout ID: " + payOutId + "\n")
-        paymentHistory.write("--------------------------------------------" + "\n")
-        paymentHistory.close()
+        ref.child('server').child('payoutHistory').child(uid).child('email').set(email)
+        ref.child('server').child('payoutHistory').child(uid).child('payoutID').set(payOutId)
+        ref.child('server').child('payoutHistory').child(uid).child('requestdate').set(exactRequestDate)
+        ref.child('server').child('payoutHistory').child(uid).child('username').set(username)
+
+        #paymentHistory = open("payouthistory.txt", "a")
+        #paymentHistory.write("Username: " + username + "\n")
+        #paymentHistory.write("UID: " + uid + "\n")
+        #paymentHistory.write("Email: " + email + "\n")
+        #paymentHistory.write("Date: " + exactRequestDate + "\n")
+        #paymentHistory.write("Code ID: " + currentCode)
+        #paymentHistory.write("Payout ID: " + payOutId + "\n")
+        #paymentHistory.write("--------------------------------------------" + "\n")
+        #paymentHistory.close()
         print('Done')
         server.send_message(msg)
         server.quit()
