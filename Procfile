@@ -1,1 +1,1 @@
-web: gunicorn clickerclash.wsgi
+web: gunicorn clickerclash.wsgi --log-file -
