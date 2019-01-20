@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="164e25dc-6971-4f97-8b79-8af346d86efa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/oldpayoutcodes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/oldpayoutcodes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payout/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/payout/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payoutcodes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/payoutcodes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payouthistory.txt" beforeDir="false" afterPath="$PROJECT_DIR$/payouthistory.txt" afterDir="false" />
-    </list>
+    <list default="true" id="164e25dc-6971-4f97-8b79-8af346d86efa" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,8 +56,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/payout/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-727">
-              <caret line="131" column="17" selection-start-line="131" selection-start-column="17" selection-end-line="131" selection-end-column="17" />
+            <state relative-caret-position="2805">
+              <caret line="187" column="19" selection-start-line="187" selection-start-column="19" selection-end-line="187" selection-end-column="19" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
                 <marker date="1547617195042" expanded="true" signature="880:883" ph="..." />
@@ -174,8 +169,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="50" />
-    <option name="y" value="119" />
+    <option name="x" value="521" />
+    <option name="y" value="799" />
     <option name="width" value="1514" />
     <option name="height" value="1028" />
   </component>
@@ -271,7 +266,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="119" width="1514" height="1028" extended-state="0" />
+    <frame x="460" y="221" width="1514" height="1028" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2203617" />
@@ -388,8 +383,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/payout/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-727">
-          <caret line="131" column="17" selection-start-line="131" selection-start-column="17" selection-end-line="131" selection-end-column="17" />
+        <state relative-caret-position="2805">
+          <caret line="187" column="19" selection-start-line="187" selection-start-column="19" selection-end-line="187" selection-end-column="19" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
             <marker date="1547617195042" expanded="true" signature="880:883" ph="..." />
