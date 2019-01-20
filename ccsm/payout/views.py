@@ -19,7 +19,7 @@ from paypalrestsdk import Payout
 # Note follow this flow to keep our files interchangeable
 # Ex all you would have to change is  /jackirish/
 #cred = credentials.Certificate('/Users/caleblee/Desktop/CCServer/ccsm/payout/ServiceAccountKey.json')
-cred = credentials.Certificate('/payout/ServiceAccountKey.json')
+cred = credentials.Certificate('CCServer/ccsm/payout/ServiceAccountKey.json')
 # Initialize the app with a service account, granting admin privileges
 firebase_admin.initialize_app(cred, {
     'databaseURL' : 'https://clickerclash.firebaseio.com/'
