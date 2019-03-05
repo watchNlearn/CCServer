@@ -16,24 +16,15 @@ from firebase_admin import credentials
 from firebase_admin import db
 from paypalrestsdk import Payout
 # Fetch the service account key JSON file contents
-# Note follow this flow to keep our files interchangeable
-#cred = credentials.Certificate('/Users/caleblee/Desktop/CCServer/ccsm/payout/ServiceAccountKey.json')
-#cred = credentials.Certificate('CCServer/ccsm/payout/ServiceAccountKey.json')
+
+#cred = credentials.Certificate('')
+#cred = credentials.Certificate('')
 cred = credentials.Certificate({
-  "type": "service_account",
-  "project_id": "clickerclash",
-  "private_key_id": "5ae4e01d505b9bbc66982e62d6394aa2ffc732d1",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCi+UMweaOf6tUK\nJn6LSbwniGilKx6pUPdoIePkKNHwtGhuPmGHlZARCcBo9qSoq/9btzratw3Fo9oH\niun/6U8CrADlFaWlkpsWfxCLA3f/rm4Ti/pFohdXmwPWmtz1b3ODxE+yj8ptMq53\nlUhRd46YfzV4o1U9unG0QuJ86BZF/1nCc37Fvy76mZxF38YUZJm4oGGcUoHWH3wB\ngYFk0mYSW3rqVhHg4Eony2m9fxSzUnHdgNOWF7EOvA8o3iVr2blJ4pkqq0N/pbTF\n+Wo8SrKIqFAebyTCE9kCSJsKsUk4Fomn7QPqFgkA8NI9dcS3RiCoE34IiSt+QFbo\nway0nsLLAgMBAAECggEADcn7Rlm0X252EgLJyC037zxaZkcss/S2yie76W0Ovkf1\nYgaDJ/6ejuJ9ViQwMFlFJNRu9VxxnNxNMUAupkluNvKorLlVJ5os5w1fL/PeLlLq\n21qHlWauhOoHvBukQFvqsSZl+9ywquaT3mhSExqDhSGWO5vONYfV4QObuCfG4qsi\nqYR/ZimYzVoTiCUFBqcu9lZjB+1YrU4z0FZ6SCauc+aNhQfO3TfTmmXHaGte39n8\nu1jiJW/IUwULPWbefst6n8UNBgWwLJ51+6YDJj0tounkKmNKMOJRj4Lo6IPe+V1u\nF7s3fahTP4+Mic4oALId7p6bhKH47JGMGlvmug+fgQKBgQDWOQgEozqH35rVS9iz\nZE7T7KR+pse/S9SyOqyOrFv6D0WMCtFl0Xm3Ju1OVhga65K6hTjJGo1WWDd9/Y0G\nQKkpghEVpnsxucstFxNf4zxVBdTNAzwWyI5Nnz4nKYtMl2KhPVgJmpVM+lnZ5Xpu\nOmah2uiE/9T80/OhtZNUmNnwiwKBgQDCwaUNVU2Htrl8IOvrIyAV91G902gbMsOC\n4mFoa1Fp6Fq0HvAEVOW6d2iegtYKqtqyhyjPDMmRqWOjM0Cw1+eBRbuX9xzO9DkN\nv8vTlNQD2V3H4h13sNSEVMDXiTWF08qxj8dh9oAACTsLq+3F/VouHMhChZxtJr78\n8upVzUR+wQKBgCL949pmEzx4gOEQZ5A99UZWpDPv6DbOGysVvHP9oXSCJBkQ901L\nXzdUi3S9SWi0TB5dfn4S8T1GYaIZ1XxM+ZTHIyVHMV5Y++AcodSK2KMGtdDbE2ih\nT+VL+qoI9jEHlVvDGmtPLc4KIr0d59azgWo0yMBYzaCSunwSncM2yHqrAoGBALCn\nHwQiDMn95u79maBV4wOpqp5JRNPuzsJIftxNA7LRzHw217TGIP5q0x18RZO1d9uZ\nl11/FtKl17evhI0juVxbmRX1Uk8x3RJolwRaqZi4MEVfByWK4qkJi0W1sjOqcN9w\nMATepynhNYqXr3v4GzVabBdSxBmJnJEp8X5USz3BAoGAVecBUgBgUgE97rc6e6il\n12Tz628P02viZgIFrSBIyX6KK0TyQx1uIWpKWVg458e3ZtuSLHLkdGKPLFa3Xvqr\n8fd6GB1Tn58CDXLY7sWqjbFsfp7wK1mn6kkoRXRGnu/torM0YgjjxAxf17mAXpnh\n+k4JqZscu/I+t772PXmCakE=\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-jimla@clickerclash.iam.gserviceaccount.com",
-  "client_id": "112212190906725573877",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-jimla%40clickerclash.iam.gserviceaccount.com"
+  s
 })
 # Initialize the app with a service account, granting admin privileges
 firebase_admin.initialize_app(cred, {
-    'databaseURL' : 'https://clickerclash.firebaseio.com/'
+    
 })
 
 ref = db.reference()
@@ -41,30 +32,30 @@ ref = db.reference()
 
 
 
-
+#PayPal use is fully functional (with proper id) but is not used in the final project
 def getAccessToken():
     url = 'https://api.sandbox.paypal.com/v1/oauth2/token'
-    client_id = 'ASsYedLneAfnAb1gDKswsaZh4ia46AN1MIjlbj_JYfuGJco8J3O4S6vzXlqFEoYRBVqVUV0XwQjyIW7n'
-    secret = 'EGma-gmh-mW2Ra6ohybDK_YXgNKfIM7aYxcSM_9fdfqDiuwXEdvTO5ShePwGVgpwNdR-cHPvciJNc_op'
+    client_id = ''
+    secret = ''
     header = {
         'Accept': 'application/json',
         'Accept-Language': 'en_US',
         'content-type': 'application/x-www-form-urlencoded'
     }
     data = {
-        'grant_type': 'client_credentials',
+        'grant_type': '',
     }
     r = requests.post(url, data=data, headers=header, auth=(client_id, secret)).json()
     print(r['access_token'])
     print(r['expires_in'])
     return r['access_token']
 
-
+#PayPal use is fully functional (with proper id) but is not used in the final project
 def paypalConfirmed(username, email, uid, exactRequestDate):
     paypalrestsdk.configure({
         "mode": "sandbox",
-        "client_id": "ASsYedLneAfnAb1gDKswsaZh4ia46AN1MIjlbj_JYfuGJco8J3O4S6vzXlqFEoYRBVqVUV0XwQjyIW7n",
-        "client_secret": "EGma-gmh-mW2Ra6ohybDK_YXgNKfIM7aYxcSM_9fdfqDiuwXEdvTO5ShePwGVgpwNdR-cHPvciJNc_op"
+        "client_id": "",
+        "client_secret": ""
     })
     '''
     url = 'https://api.paypal.com/v1/payments/payouts?sync_mode=false'
@@ -111,6 +102,7 @@ def paypalConfirmed(username, email, uid, exactRequestDate):
     else:
         print(payout.error)
         return False
+#Email version that is used in final version
 def findSMTP(usersProvider):
     #find and match list of user providers
     usersProviderl = usersProvider.lower()
@@ -127,22 +119,7 @@ def findSMTP(usersProvider):
     return existingProviders.get(usersProviderl)
 
 def getCode(exactRequestDate):
-    #payoutcode = open('payoutcodes.txt')
-    #payoutcodedata = payoutcode.readlines()
-    #currentcode = payoutcodedata[2]
-    #print(currentcode)
-    #payoutcode.close()
-    #payoutcodedata.pop(2)
-
-    #payoutcoderewrite = open('payoutcodes.txt', 'w')
-    #newPayoutData = "".join(payoutcodedata)
-    #payoutcoderewrite.write(newPayoutData)
-    #payoutcoderewrite.close()
-
-    #payoutcodelog = open('oldpayoutcodes.txt', 'a')
-    #payoutcodelog.write(currentcode + "Date: " + exactRequestDate + "\n")
-    #payoutcodelog.write("--------------------------------------------" + "\n")
-    #payoutcodelog.close()
+  
     code1 = ref.child('server').child('codes').child('code1').get()
     if code1 != "":
         ref.child('server').child('expiredcodes').child(code1).set(exactRequestDate)
@@ -177,7 +154,7 @@ def getCode(exactRequestDate):
 
 def emailBot(username, email, uid, exactRequestDate):
     print('Starting Email')
-    sender = 'clickerclash.business@gmail.com'
+    sender = ''
     receiver = email
     usersProvider = receiver[receiver.find('@')+1:]
     if findSMTP(usersProvider):
@@ -211,7 +188,7 @@ Best regards,
         msg['From'] = sender
         msg['To'] = receiver
         msg['Subject'] = 'Clicker Clash Cashout'
-        server.login(sender, password='clobwdtipjbgguob')
+        server.login(sender, password='')
         print('Logging Transaction...')
         ref.child('server').child('payoutHistory').child(uid).child('email').set(email)
         ref.child('server').child('payoutHistory').child(uid).child('payoutID').set(payOutId)
@@ -329,7 +306,7 @@ def verifyRequest(username, uid, ccValue, timestamp, clientKey):
                 threshHoldS = serverTS - clientTS
                 if threshHoldS <= 300:
                     print('TimeCheck    [Passed]')
-                    if clientKey == "yea_im_feeling_like_ray_charles":
+                    if clientKey == "":
                         print('ClientCheck  [Passed]')
                         return True
                     #Request is recent enough
@@ -357,9 +334,7 @@ def verifyRequest(username, uid, ccValue, timestamp, clientKey):
 
 
 # Create your views here.
-# Works
-#endtime = ref.child('tournaments').child('standard').child('st1').child('endDate').get()
-#print(endtime)
+
 '''
 import requests
 
